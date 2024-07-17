@@ -38,7 +38,7 @@ def get_purchase_details():
     with st.form("pricing-details"):
         home_price = st.number_input("**Home Asking Price**", min_value=300000, step=1)
         initial_rental_rate = st.number_input("**Initial Monthly Rent on Property**\n\n*You can use [US Gov's HUD Fair Market Rents Documentation System](https://www.huduser.gov/portal/datasets/fmr/fmrs/FY2024_code/select_Geography.odn) to find a market rate for properties in your area.*", step=1, value=1500)
-        rental_increase_percentage = st.number_input("**Rent Percentage Increase YoY**\n\n*The default value of 5% comes is from Neeyah's upper limit on rental increases per year.*", max_value=5.0, value=5.0)
+        rental_increase_percentage = st.number_input("**Rent Percentage Increase YoY**\n\n*The default value of 5% comes is from Neeyah's upper limit on rental increases per year.*", max_value=5.0, min_value=0.01, value=5.0)
         
         submitted = st.form_submit_button("Submit")
         if submitted:
@@ -99,7 +99,7 @@ def calculate_payment_schedule(home_purchase_details):
 
 
             # Increase rent by percentage every year
-            if current_date.month == start_date.month: 
+            if current_date.month == start_date.month and start_date.month != current_date.month: 
                 rental_rate = round(rental_rate * (1 + rent_increase_percent),2)
             
             #Increae time by 1 month
