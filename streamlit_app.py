@@ -120,7 +120,7 @@ def calculate_payment_schedule(home_purchase_details):
         
         st.write("### Payment Schedule")
         st.dataframe(df)
-        st.write(f"**Total Rent Paid to Neeyah:** ${round(total_neeyah_rent,2)}")
+        st.write(f"**Total Rent Paid to Neeyah:** ${round(sum(neeyah_rental_payment_list),2)}")
         st.write(f"**Total Cost with Equity:** ${round(total_cost,2)}")
         
     except:
