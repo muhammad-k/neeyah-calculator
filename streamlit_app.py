@@ -98,8 +98,8 @@ def calculate_payment_schedule(home_purchase_details):
             total_neeyah_rent += neeyah_percent_equity * rental_rate
 
 
-            # Increase rent by percentage every year
-            if current_date.month == start_date.month and start_date.month != current_date.month: 
+            # Increase rent by percentage every year except on first month
+            if current_date.month == start_date.month and start_date.year != current_date.year: 
                 rental_rate = round(rental_rate * (1 + rent_increase_percent),2)
             
             #Increae time by 1 month
