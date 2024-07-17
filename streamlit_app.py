@@ -84,7 +84,7 @@ def calculate_payment_schedule(home_purchase_details):
             neeyah_equity_list.append(round(neeyah_equity, 2))
             neeyah_percent_equity_list.append(round(neeyah_percent_equity * 100, 2))
             
-            personal_equity_list.append(round(neeyah_equity, 2))
+            personal_equity_list.append(round(personal_equity, 2))
             personal_percent_equity_list.append(round(personal_percent_equity * 100,2))
             
             rental_rate_list.append(rental_rate)
