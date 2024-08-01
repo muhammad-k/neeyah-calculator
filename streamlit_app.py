@@ -40,7 +40,7 @@ def calculate_payment_schedule_by_percent(home_purchase_details):
         personal_tax_burden_list = []
         total_monthly_payment_list = []
 
-        # while personal_equity <= home_value:
+        # TODO handle weird values 
         while personal_equity_percentage <= 1:
             # At start of the year, 
             # increase rent, home values and calculate monthly tax rate and equity investment payment
@@ -85,20 +85,33 @@ def calculate_payment_schedule_by_percent(home_purchase_details):
             if month == 1: year += 1
 
 
-        data = {
-            "Home Value" : home_value_list,
-            "Neeyah Equity" : neeyah_equity_list,
-            "Personal Equity" : personal_equity_list,
-            "Neeyah Equity %" : neeyah_equity_percent_list,
-            "Personal Equity %": personal_equity_percent_list,
-            "Rental Rate": rental_rate_list,
-            "Rental Payment" : rental_expense_list,
-            "Equity Payment" : equity_investment_payment_list,
-            "Total Tax Burden" : total_tax_burden_list,
-            "Personal Tax Burden" : personal_tax_burden_list,
-            "Total Monthly Payment": total_monthly_payment_list
-        }
+        # data = {
+        #     "Home Value" : home_value_list,
+        #     "Neeyah Equity" : neeyah_equity_list,
+        #     "Personal Equity" : personal_equity_list,
+        #     "Neeyah Equity %" : neeyah_equity_percent_list,
+        #     "Personal Equity %": personal_equity_percent_list,
+        #     "Rental Rate": rental_rate_list,
+        #     "Rental Payment" : rental_expense_list,
+        #     "Equity Payment" : equity_investment_payment_list,
+        #     "Total Tax Burden" : total_tax_burden_list,
+        #     "Personal Tax Burden" : personal_tax_burden_list,
+        #     "Total Monthly Payment": total_monthly_payment_list
+        # }
 
+        data = {
+            "Home Value" : [f"${str(int(value))}" for value in home_value_list],
+            "Neeyah Equity" : [f"${str(int(value))}" for value in neeyah_equity_list],
+            "Personal Equity" : [f"${str(int(value))}" for value in personal_equity_list],
+            "Neeyah Equity %" : [f"{round((value*100), 1)}%" for value in neeyah_equity_percent_list],
+            "Personal Equity %": [f"{round((value*100), 1)}%" for value in personal_equity_percent_list],
+            "Rental Rate": [f"${str(int(value))}" for value in rental_rate_list],
+            "Rental Payment" : [f"${str(int(value))}" for value in rental_expense_list],
+            "Equity Payment" : [f"${str(int(value))}" for value in equity_investment_payment_list],
+            "Total Tax Burden" : [f"${str(int(value))}" for value in total_tax_burden_list],
+            "Personal Tax Burden" : [f"${str(int(value))}" for value in personal_tax_burden_list],
+            "Total Monthly Payment": [f"${str(int(value))}" for value in total_monthly_payment_list]
+        }
 
         # rows = zip(month_and_year_list, home_value_list, neeyah_equity_list, personal_equity_list, neeyah_equity_percent_list, personal_equity_percent_list, rental_rate_list, rental_expense_list, equity_investment_payment_list, total_tax_burden_list, personal_tax_burden_list, total_monthly_payment_list)
         # column_headers = [ "Date",  "Home Value", "Neeyah Equity", "Personal Equity", "Neeyah Equity %", "Personal Equity %", "Rental Rate", "Rental Payment", "Equity Payment", "Total Tax Burden", "Personal Tax Burden", "Total Monthly Payment" ] 
