@@ -24,19 +24,19 @@ def header():
 def get_purchase_details():
     with st.form("pricing-details"):
         st.markdown('''### 🏡 Home Information''')
-        home_purchase_price = st.number_input("**Home Purchase Price**", min_value=100000, value=300000, step=1)
-        down_payment_amount = st.number_input("**Down Payment Amount**\n\n*Minimum 20% of home value.*", min_value=20000, value=60000, step=1)
-        local_property_tax_rate = st.number_input("**Local Property Tax Rate**\n\n*You can use [SmartAsset's Property Tax Calcuator](https://smartasset.com/taxes/property-taxes) to find the property tax rates in your area.*", max_value=5.0, min_value=0.01, value=.9)
+        home_purchase_price = st.number_input("**Home Purchase Price**", min_value=100000, value=350000, step=1)
+        down_payment_amount = st.number_input("**Down Payment Amount**\n\n*Minimum 20% of home value.*", min_value=20000, value=70000, step=1)
+        local_property_tax_rate = st.number_input("**Local Property Tax Rate**\n\n*You can use [SmartAsset's Property Tax Calcuator](https://smartasset.com/taxes/property-taxes) to find the property tax rates in your area.*", max_value=5.0, min_value=0.01, value=1.25)
         st.markdown("""---""")
 
         st.markdown('''### 💵 Rental Information''')
-        initial_rental_rate = st.number_input("**Initial Monthly Rent on Property**\n\n*You can use [US Gov's HUD Fair Market Rents Documentation System](https://www.huduser.gov/portal/datasets/fmr/fmrs/FY2024_code/select_Geography.odn) to find a market rate for properties in your area.*", step=1, value=1500)
-        annual_rental_increase_percentage = st.number_input("**Rent Percentage Increase YoY**\n\n*The default value of 5% comes is from Neeyah's upper limit on rental increases per year.*", max_value=5.0, min_value=0.01, value=5.0)
+        initial_rental_rate = st.number_input("**Initial Monthly Rent on Property**\n\n*You can use [US Gov's HUD Fair Market Rents Documentation System](https://www.huduser.gov/portal/datasets/fmr/fmrs/FY2024_code/select_Geography.odn) to find a market rate for properties in your area.*", step=1, value=2000)
+        annual_rental_increase_percentage = st.number_input("**Rent Percentage Increase YoY**\n\n*5% is Neeyah's upper limit on rental increases per year.*", max_value=5.0, min_value=0.01, value=3.0)
         st.markdown("""---""")
 
         st.markdown('''### 📈 Home Value Growth''')
-        annual_home_value_appreciation_percentage = st.number_input("**Home Value Increase YoY**\n\n*The default value of 5% comes is from Neeyah's upper limit on home value increases per year.*", max_value=5.0, min_value=0.01, value=5.0)
-        annual_equity_purchase_rate = st.number_input("**Equity Percent Purchase YoY**\n\n*The amount of equity you would like to gain from the total home value every year.*", max_value=5.0, min_value=0.01, value=3.0)
+        annual_home_value_appreciation_percentage = st.number_input("**Home Value Increase YoY**\n\n*5% is Neeyah's upper limit on rental increases per year on home value increases per year.*", max_value=5.0, min_value=0.01, value=3.0)
+        annual_equity_purchase_rate = st.number_input("**Equity Percent Purchase YoY**\n\n*The amount of equity you would like to gain from the total home value every year.*", max_value=5.0, min_value=0.01, value=5.0)
 
         submitted = st.form_submit_button("Submit")
         if submitted:
