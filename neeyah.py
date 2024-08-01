@@ -26,7 +26,7 @@ def get_purchase_details():
         st.markdown('''### 🏡 Home Information''')
         home_purchase_price = st.number_input("**Home Purchase Price**", min_value=100000, value=300000, step=1)
         down_payment_amount = st.number_input("**Down Payment Amount**\n\n*Minimum 20% of home value.*", min_value=20000, value=60000, step=1)
-        local_property_tax_rate = st.number_input("**Local Property Tax Rate**\n\n*You can use [SmartAsset's Property Tax Calcuator](https://smartasset.com/taxes/property-taxes) to find the property tax rates in your area.*", max_value=2.0, min_value=0.01, value=.9)
+        local_property_tax_rate = st.number_input("**Local Property Tax Rate**\n\n*You can use [SmartAsset's Property Tax Calcuator](https://smartasset.com/taxes/property-taxes) to find the property tax rates in your area.*", max_value=5.0, min_value=0.01, value=.9)
         st.markdown("""---""")
 
         st.markdown('''### 💵 Rental Information''')
@@ -36,7 +36,7 @@ def get_purchase_details():
 
         st.markdown('''### 📈 Home Value Growth''')
         annual_home_value_appreciation_percentage = st.number_input("**Home Value Increase YoY**\n\n*The default value of 5% comes is from Neeyah's upper limit on home value increases per year.*", max_value=5.0, min_value=0.01, value=5.0)
-        annual_equity_purchase_rate = st.number_input("**Equity Percent Purchase YoY**\n\n*The amount of equity you would like to purchase every year.*", max_value=5.0, min_value=0.01, value=3.0)
+        annual_equity_purchase_rate = st.number_input("**Equity Percent Purchase YoY**\n\n*The amount of equity you would like to gain from the total home value every year.*", max_value=5.0, min_value=0.01, value=3.0)
 
         submitted = st.form_submit_button("Submit")
         if submitted:
