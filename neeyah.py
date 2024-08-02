@@ -13,6 +13,17 @@ class PricingDetails:
     def __str__(self):
         return f"Home Price: {self.home_purchase_price} \nDown Payment Amount: {self.down_payment_amount} \nLocal Property Tax Rate: {self.local_property_tax_rate} \n--------------------\nInitial Rental Rate: {self.initial_rental_rate} \nRental Increase Percentage: {self.annual_rental_increase_percentage} \n--------------------\nAnnual Home Value Appreciation Percentage: {self.annual_home_value_appreciation_percentage} \nAnnual Equity Purchase Rate: {self.annual_equity_purchase_rate}"
 
+class ScheduleDetails:
+    def __init__(self, simplified_df, full_df, annual_equity_purchase_rate, rental_expense_list, personal_tax_burden_list, year, month):
+        self.simplified_df = simplified_df
+        self.full_df = full_df
+        self.annual_equity_purchase_rate = annual_equity_purchase_rate
+        self.rental_expense_list = rental_expense_list
+        self.personal_tax_burden_list = personal_tax_burden_list
+        self.year = year
+        self.month = month
+
+
 def header():
     st.title("Neeyah Payment Calculator 💸")
     st.markdown('''
@@ -35,17 +46,42 @@ def get_purchase_details():
         st.markdown("""---""")
 
         st.markdown('''### 📈 Home Value Growth''')
-        annual_home_value_appreciation_percentage = st.number_input("**Home Value Increase YoY**\n\n*5% is Neeyah's upper limit on rental increases per year on home value increases per year.*", max_value=5.0, min_value=0.01, value=3.0)
+        annual_home_value_appreciation_percentage = st.number_input("**Home Value Increase YoY**\n\n*5% is Neeyah's upper limit on home value increases per year.*", max_value=5.0, min_value=0.01, value=3.0)
         annual_equity_purchase_rate = st.number_input("**Equity Percent Purchase YoY**\n\n*The amount of equity you would like to gain from the total home value every year.*", max_value=5.0, min_value=0.01, value=5.0)
 
         submitted = st.form_submit_button("Submit")
         if submitted:
             if down_payment_amount < home_purchase_price * .2:
-                st.warning(f"Down payment is less than 20% of home price.\n\nPlease update down payment value and resubmit.", icon="⚠️")
+                st.warning(f"#### Down payment is less than 20% of home price.\n\nPlease update down payment value and resubmit.")
                 return
             home_purchase_details = PricingDetails(home_purchase_price=home_purchase_price, down_payment_amount=down_payment_amount, local_property_tax_rate=local_property_tax_rate, initial_rental_rate=initial_rental_rate, annual_rental_increase_percentage=annual_rental_increase_percentage, annual_home_value_appreciation_percentage=annual_home_value_appreciation_percentage, annual_equity_purchase_rate=annual_equity_purchase_rate)
             return home_purchase_details
         
+
+def display_df(schedule_info: ScheduleDetails):
+    if schedule_info is None:
+        return
+    
+    simplified_df = schedule_info.simplified_df
+    full_df = schedule_info.full_df
+    annual_equity_purchase_rate = schedule_info.annual_equity_purchase_rate
+    rental_expense_list = schedule_info.rental_expense_list
+    personal_tax_burden_list = schedule_info.personal_tax_burden_list
+    year = schedule_info.year
+    month = schedule_info.month
+
+    st.write("### Payment Schedule")
+    st.write(f"This is a payment schedule that assumes you purchase {int(annual_equity_purchase_rate * 100)}% of Neeyah's equity per year.\n\nIt would take you **{year} years and {month} {'month' if month == 1 else 'months'}** to complete the payments.\n\nBy the end of the term you would have paid **\${round(sum(rental_expense_list),2)}** in rental payments to Neeyah and **${round(sum(personal_tax_burden_list),2)}** in taxes.")
+
+    # TODO figure out toggle for full and simplfied view
+    st.write("#### Simplified Columns")
+    st.dataframe(simplified_df)
+
+    st.write("#### Full Columns")
+    st.dataframe(full_df)
+
+
+
 def neeyah_description():
     st.write('''
         ### How Does Home Ownership with Neeyah Work?
