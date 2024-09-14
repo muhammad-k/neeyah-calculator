@@ -1,0 +1,3 @@
+# Neeyah Payment Calculator
+
+[Neeyah](https://neeyah.com/) is an alternative to conventional mortgages for Muslim home buyers through the use of a technique called [Musharakah](https://en.wikipedia.org/wiki/Profit_and_loss_sharing#Musharakah). Since this method of home ownership is not common in the United States, this calculator aims to help home buyers better understand a potential payment structure.
