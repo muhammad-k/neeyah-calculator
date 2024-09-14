@@ -37,7 +37,7 @@ def get_purchase_details():
         st.markdown('''### 🏡 Home Information''')
         home_purchase_price = st.number_input("**Home Purchase Price**", min_value=100000, value=350000, step=1)
         down_payment_amount = st.number_input("**Down Payment Amount**\n\n*Minimum 20% of home value.*", min_value=20000, value=70000, step=1)
-        local_property_tax_rate = st.number_input("**Local Property Tax Rate**\n\n*You can use [SmartAsset's Property Tax Calcuator](https://smartasset.com/taxes/property-taxes) to find the property tax rates in your area.*", max_value=5.0, min_value=0.01, value=1.25)
+        local_property_tax_rate = st.number_input("**Local Property Tax Rate**\n\n*You can use [SmartAsset's Property Tax Calculator](https://smartasset.com/taxes/property-taxes) to find the property tax rates in your area.*", max_value=5.0, min_value=0.01, value=1.25)
         st.markdown("""---""")
 
         st.markdown('''### 💵 Rental Information''')
